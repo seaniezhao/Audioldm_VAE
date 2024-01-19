@@ -31,10 +31,8 @@ def create_model(checkpoint_path, device=None):
 
 def main():
   
-    mel = get_mel_from_wav_file("train_tgt_3000.flac")
- 
+    mel = get_mel_from_wav_file("test/origin.flac")
     mel = mel.unsqueeze(0).unsqueeze(1)
-
     model = create_model("/home/sean/checkpoints/audioldm2/first_stage.pt")
     print(model)
 
@@ -43,7 +41,7 @@ def main():
 
     y1 = model.decode_to_waveform(dec_mel)
     print(y1.shape)
-    sf.write("test1.flac", y1[0], 48000)
+    sf.write("test/decoded.flac", y1[0], 48000)
 
     
 
